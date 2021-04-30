@@ -17,9 +17,7 @@ update-alternatives: --install 需要 <链接> <名称> <路径> <优先级>
 $ ./configure --without-pcre
 $ make
 $ make install
-```
 ②、设置指定的目录
-```txt
 $ ./configure --prefix=/home/yourname/projects
 $ make
 $ make install
@@ -31,4 +29,5 @@ $ make install
 ②、gcc -c -fpic example.c  example_wrap.c -I/usr/include/python3.6
 ③、gcc -shared example.o example_wrap.o -o _example.so
 主要文件：example.py, example.so
+使用方式：import _example as em 或 import example
 ```
