@@ -11,4 +11,24 @@ update-alternatives: --install 需要 <链接> <名称> <路径> <优先级>
 ④、 update-alternatives --config python        >-手动切换python版本
 ```
 - swig安装
-- 
+这里安装pre会有些问题，所以暂时不安装pcre
+```txt
+①、默认安装目录：/usr/local
+$ ./configure --without-pcre
+$ make
+$ make install
+```
+②、设置指定的目录
+```txt
+$ ./configure --prefix=/home/yourname/projects
+$ make
+$ make install
+```
+- swig使用例程
+```txt
+主要步骤：
+①、swig -python example.i
+②、gcc -c -fpic example.c  example_wrap.c -I/usr/include/python3.6
+③、gcc -shared example.o example_wrap.o -o _example.so
+主要文件：example.py, example.so
+```
