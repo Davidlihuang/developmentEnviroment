@@ -28,6 +28,10 @@ $ make install
 ①、swig -python example.i
 ②、gcc -c -fpic example.c  example_wrap.c -I/usr/include/python3.6
 ③、gcc -shared example.o example_wrap.o -o _example.so
+目标文件：example.c
+接口文件：example.i
+自动生成文件：example_wrap.c, example.py
+编译生成库文件：_example.so
 主要文件：example.py, example.so
 使用方式：import _example as em 或 import example
 ```
