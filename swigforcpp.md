@@ -19,6 +19,52 @@
    - wraper function: 写一个封装函数作为interpreter和c之间的沟通桥梁
    - provid key information: 通过wraper函数给interpreter提供转换的细节（函数名称，参数等）
 3. wraper function
+- example.c
+```c
+  1 double val = 3.00;
+  2 int fact(int n)
+  3 {
+  4     if(n<=1)
+  5     {
+  6         return 1;
+  7     }
+  8     else
+  9     {
+ 10         return n*fact(n-1);
+ 11     }
+ 12 }
+ 13 
+ 14 int my_mod(int n, int m)
+ 15 {
+ 16     return (n%m);
+ 17 }    
+```
+- example.i : wraper function
+```c
+  1 /*file:example.i*/
+  2 %module example
+  3 %{
+  4 extern double val; 
+  5 extern int fact(int);
+  6 extern int my_mod(int n, int m);
+  7 %}
+  8 
+  9 extern double val;
+ 10 extern int fact(int);
+```
+- 编译：
+```shell
+swig -python example.i
+gcc -c -fpic example.c example_wrap.c -I/usr/include/python3.6
+gcc -shared example.o example_wrap.o -o _example.so
+```
+- 应用：
+```python
+import _example as em
+#全局变量访问
+em.cvar.val
+em.fact(10)
+```
 4. variable links
 5. constants
 6. structures and classes
