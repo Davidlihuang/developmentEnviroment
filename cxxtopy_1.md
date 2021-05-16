@@ -43,7 +43,7 @@ buid_ext: 告诉distutils编译扩展库
 3. 静态编译
 部分系统不支持使用动态库的话，需要重新将python interpreter重新编译一次
 embed.i: 用来rebuid python的解析器，其内容包含了Python静态版本的代码
-example.i
+- example.i
 ```c
 %module example 
 %inline %{ 
@@ -64,4 +64,3 @@ $ gcc example.c example_wrap.c \
       -L/usr/lib/python2.7/config -lpython2.7 -lm -ldl \ 
       -o mypython
 ```
-4. 
