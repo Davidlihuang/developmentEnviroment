@@ -35,3 +35,15 @@ $ make install
 主要文件：example.py, example.so
 使用方式：import _example as em 或 import example
 ```
+- c++编译
+```shell
+$ swig -c++ -python example.i 
+$ g++ -O2 -fPIC -c example.cxx 
+$ g++ -O2 -fPIC -c example_wrap.cxx -I/usr/include/python3.6 
+$ g++ -shared example.o example_wrap.o -o _example.so
+指定生成目录：
+swig -c++ -python -outdir pyfiles -o cppfiles/example_wrap.cpp example.i
+pyfiles: example.py
+cppfiles: example_wrap.cpp
+```
+
